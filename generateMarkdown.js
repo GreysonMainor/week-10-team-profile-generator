@@ -1,5 +1,5 @@
 function generateMarkdown(data){
-    `< !DOCTYPE html >
+  return  `< !DOCTYPE html >
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -43,9 +43,11 @@ text-align: center;
 </span>
 </nav>
 <div class="row">
-${something}
+${data.name}
 </div>
 </body>
 
-</html>`
+</html>
+`;
 }
+module.exports = generateMarkdown;
