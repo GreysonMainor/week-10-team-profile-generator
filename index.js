@@ -5,6 +5,11 @@ const engineer = require("./public/engineer")
 const intern = require("./public/intern")
 const employees = []
 
+function init() {
+    generateMarkdownBegin();
+    addPerson();
+}
+
 function addPerson() {
     inquirer.prompt([
         {
@@ -60,21 +65,21 @@ function addPerson() {
                 .then(function ({ moreInfo, anotherOne }) {
                     let newPerson;
                     if (role === "Manager") {
-                        newPerson = new Manager(name, id, email, moreInfo);
+                        newPerson = new manager(name, id, email, moreInfo);
                     } else if (role === "Engineer") {
-                        newPerson = new Engineer(name, id, email, moreInfo);
+                        newPerson = new engineer(name, id, email, moreInfo);
                     } else {
-                        newPerson = new Intern(name, id, email, moreInfo);
+                        newPerson = new intern(name, id, email, moreInfo);
                     }
                     employees.push(newPerson);
                     generateMarkdownMid(newPerson)
-                    .then(function(){
-                        if (anotherOne === "yes") {
-                            addPerson();
-                        } else {
-
-                        }
-                    })
+                        .then(function () {
+                            if (anotherOne === "yes") {
+                                addPerson();
+                            } else {
+                                generateMarkdownEnd();
+                            }
+                        })
 
                 })
         })
@@ -98,29 +103,88 @@ function generateMarkdownBegin() {
   </nav>
   <div class = "container">
   <div class="row">`;
-  fs.writeFile("index.html", html, function(error){
-      if (err) {
-          console.log(error)
-      }
-  });
-  console.log("Begin");
+    fs.writeFile("index.html", html, function (error) {
+        if (err) {
+            console.log(error)
+        }
+    });
+
 }
 
 function generateMarkdownMid(data) {
-return new Promise(function(resolve, reject){
-   
-})
+    return new Promise(function (resolve, reject) {
+        const name = data.getName();
+        const id = data.getId();
+        const email = data.getEmail();
+        const role = data.getRole();
+        let stuff = "";
+        if (role === "manager") {
+            const officeNumber = data.getOfficeNumber();
+            stuff = `<div class = "col-6">
+       <div class="card" style="width: 18rem;">
+       <div class="card-body">
+         <h5 class="card-title">${name}</h5>
+       </div>
+       <ul class="list-group list-group-flush">
+         <li class="list-group-item">ID: ${id}</li>
+         <li class="list-group-item">Email: ${email}</li>
+         <li class="list-group-item">Office number: ${officeNumber}</li>
+       </ul>
+     </div>
+     </div>`;
+        } else if (role === "engineer") {
+            const github = data.getGithub();
+            stuff = `<div class = "col-6">
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${name}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">ID: ${id}</li>
+      <li class="list-group-item">Email: ${email}</li>
+      <li class="list-group-item">Github: ${github}</li>
+    </ul>
+  </div>
+  </div>`;
+        } else {
+            const school = data.getSchool();
+            stuff = `<div class = "col-6">
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${name}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">ID: ${id}</li>
+      <li class="list-group-item">Email: ${email}</li>
+      <li class="list-group-item">School: ${school}</li>
+    </ul>
+  </div>
+  </div>`
+        }
+        console.log("Team member added.");
+        fs.appendFile("index.html", data, function (error) {
+            if (error) {
+                return reject(error)
+            }
+            return resolve();
+        });
+    });
 }
 
-function generateMarkdownEnd(){
+
+
+function generateMarkdownEnd() {
     const html = `</div>
     </div>
     </body>
     </html>`;
+
+    fs.appendFile("index.html", html, function (error) {
+        if (error) {
+            console.log(error);
+        };
+    });
 }
-function init() {
-    addPerson();
-    generateMarkdownEnd();
-}
+
 
 init();
