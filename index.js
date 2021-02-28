@@ -122,12 +122,12 @@ function generateMarkdownMid(data) {
             const officeNumber = data.getOfficeNumber();
             stuff = `<div class = "col-6">
        <div class="card" style="width: 18rem;">
-       <div class="card-body">
+       <div class="card-body card text-white bg-success mb-3">
          <h5 class="card-title">${name}<br />Manager</h5>
        </div>
        <ul class="list-group list-group-flush">
          <li class="list-group-item">ID: ${id}</li>
-         <li class="list-group-item">Email: ${email}</li>
+         <li class="list-group-item">Email: <a href = "mailto: ${email}"> ${email}</a></li>
          <li class="list-group-item">Office number: ${officeNumber}</li>
        </ul>
      </div>
@@ -136,13 +136,13 @@ function generateMarkdownMid(data) {
             const github = data.getGithub();
             stuff = `<div class = "col-6">
     <div class="card" style="width: 18rem;">
-    <div class="card-body">
+    <div class="card-body card text-white bg-success mb-3">
       <h5 class="card-title">${name}<br />Engineer</h5>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${id}</li>
-      <li class="list-group-item">Email: ${email}</li>
-      <li class="list-group-item">Github: ${github}</li>
+      <li class="list-group-item">Email: <a href = "mailto: ${email}"> ${email}</a></li>
+      <li class="list-group-item">Github:<a href="http://www.github.com/${github}"> github.com/${github}</a></li>
     </ul>
   </div>
   </div>`;
@@ -150,12 +150,12 @@ function generateMarkdownMid(data) {
             const school = data.getSchool();
             stuff = `<div class = "col-6">
     <div class="card" style="width: 18rem;">
-    <div class="card-body">
+    <div class="card-body card text-white bg-success mb-3">
       <h5 class="card-title">${name}<br />Intern</h5>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${id}</li>
-      <li class="list-group-item">Email: ${email}</li>
+      <li class="list-group-item">Email: <a href = "mailto: ${email}"> ${email}</a></li>
       <li class="list-group-item">School: ${school}</li>
     </ul>
   </div>
