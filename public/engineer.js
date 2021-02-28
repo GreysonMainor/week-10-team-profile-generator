@@ -1,8 +1,14 @@
-<div class="card mx-auto" style="width: 18rem">
-    <h5 class="card-header">Name<br /><br />Engineer</h5>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID</li>
-        <li class="list-group-item">email</li>
-        <li class="list-group-item">GitHub</li>
-    </ul>
-</div>
+const employee = require("./employee")
+class engineer extends employee {
+    constructor(name, id, email, github){
+        super(name, id, email);
+        this.github = github;
+    }
+    getGithub(){
+        return this.github;
+    }
+    getRole(){
+        return "engineer";
+    }
+}
+module.exports = engineer;

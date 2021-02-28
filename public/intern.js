@@ -1,8 +1,15 @@
-<div class="card mx-auto" style="width: 18rem">
-    <h5 class="card-header">Name<br /><br />Intern</h5>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID</li>
-        <li class="list-group-item">email</li>
-        <li class="list-group-item">School</li>
-    </ul>
-</div>
+const employee = require("./employee");
+class intern extends employee {
+    constructor(name, id, email, school){
+        super(name, id, email);
+        this.school = school;
+    }
+    getSchool(){
+        return this.school;
+    }
+    getRole(){
+        return "intern"
+    }
+}
+
+module.exports = intern;

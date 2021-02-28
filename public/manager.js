@@ -1,8 +1,14 @@
-<div class="card mx-auto" style="width: 18rem">
-    <h5 class="card-header">Name<br /><br />Manager</h5>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID</li>
-        <li class="list-group-item">email</li>
-        <li class="list-group-item">Office Phone</li>
-    </ul>
-</div>
+const employee = require("./employee");
+class manager extends employee {
+    constructor(name, id, email, officeNumber){
+        super (name, id, email);
+        this.officeNumber = officeNumber;
+    }
+    getOfficeNumber(){
+        return this.officeNumber;
+    }
+    getRole(){
+        return "manager"
+    }
+}
+module.exports = manager;
