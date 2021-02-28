@@ -136,7 +136,7 @@ function generateMarkdownMid(data) {
             const github = data.getGithub();
             stuff = `<div class = "col-6">
     <div class="card" style="width: 18rem;">
-    <div class="card-body card text-white bg-success mb-3">
+    <div class="card-body card text-white bg-primary mb-3">
       <h5 class="card-title">${name}<br />Engineer</h5>
     </div>
     <ul class="list-group list-group-flush">
@@ -150,7 +150,7 @@ function generateMarkdownMid(data) {
             const school = data.getSchool();
             stuff = `<div class = "col-6">
     <div class="card" style="width: 18rem;">
-    <div class="card-body card text-white bg-success mb-3">
+    <div class="card-body card text-white bg-secondary mb-3">
       <h5 class="card-title">${name}<br />Intern</h5>
     </div>
     <ul class="list-group list-group-flush">
