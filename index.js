@@ -1,7 +1,8 @@
 const inquirer = require("inquirer")
 const fs = require("fs")
-const generateMarkdown = require("./generateMarkdown")
-const { ENGINE_METHOD_RAND } = require("constants")
+const manager = require("./public/manager")
+const engineer = require("./public/engineer")
+const intern = require("./public/intern")
 const employees = []
 
 function addPerson() {
@@ -107,7 +108,7 @@ function generateMarkdownBegin() {
 
 function generateMarkdownMid(data) {
 return new Promise(function(resolve, reject){
-    
+   
 })
 }
 
