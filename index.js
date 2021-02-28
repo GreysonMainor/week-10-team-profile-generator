@@ -62,7 +62,7 @@ function addPerson() {
                 ],
                 name: "anotherOne"
             }])
-                .then(function ({ moreInfo, anotherOne }) {
+                .then(function ({moreInfo, anotherOne}) {
                     let newPerson;
                     if (role === "Manager") {
                         newPerson = new manager(name, id, email, moreInfo);
@@ -86,7 +86,7 @@ function addPerson() {
 };
 
 function generateMarkdownBegin() {
-    const html = `< !DOCTYPE html >
+    const html = `
   <html lang="en">
   <head>
   <meta charset="UTF-8">
@@ -104,7 +104,7 @@ function generateMarkdownBegin() {
   <div class = "container">
   <div class="row">`;
     fs.writeFile("index.html", html, function (error) {
-        if (err) {
+        if (error) {
             console.log(error)
         }
     });
@@ -123,7 +123,7 @@ function generateMarkdownMid(data) {
             stuff = `<div class = "col-6">
        <div class="card" style="width: 18rem;">
        <div class="card-body">
-         <h5 class="card-title">${name}</h5>
+         <h5 class="card-title">${name}<br />Manager</h5>
        </div>
        <ul class="list-group list-group-flush">
          <li class="list-group-item">ID: ${id}</li>
@@ -137,7 +137,7 @@ function generateMarkdownMid(data) {
             stuff = `<div class = "col-6">
     <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">${name}</h5>
+      <h5 class="card-title">${name}<br />Engineer</h5>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${id}</li>
@@ -151,7 +151,7 @@ function generateMarkdownMid(data) {
             stuff = `<div class = "col-6">
     <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">${name}</h5>
+      <h5 class="card-title">${name}<br />Intern</h5>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${id}</li>
@@ -162,9 +162,9 @@ function generateMarkdownMid(data) {
   </div>`
         }
         console.log("Team member added.");
-        fs.appendFile("index.html", data, function (error) {
+        fs.appendFile("index.html", stuff, function (error) {
             if (error) {
-                return reject(error)
+                return reject(error);
             }
             return resolve();
         });
